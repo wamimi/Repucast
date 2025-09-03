@@ -118,24 +118,24 @@ type FeaturesProps = {
 export function Features({ setActiveTab }: FeaturesProps) {
   return (
     <div className="space-y-6 animate-fade-in">
-      <Card title="Key Features">
+      <Card title="RepuCast Features">
         <ul className="space-y-3 mb-4">
           <li className="flex items-start">
             <Icon name="check" className="text-[var(--app-accent)] mt-1 mr-2" />
             <span className="text-[var(--app-foreground-muted)]">
-              Minimalistic and beautiful UI design
+              On-chain reputation scoring combining social + transaction data
             </span>
           </li>
           <li className="flex items-start">
             <Icon name="check" className="text-[var(--app-accent)] mt-1 mr-2" />
             <span className="text-[var(--app-foreground-muted)]">
-              Responsive layout for all devices
+              Reputation-gated NFT badges for verified humans
             </span>
           </li>
           <li className="flex items-start">
             <Icon name="check" className="text-[var(--app-accent)] mt-1 mr-2" />
             <span className="text-[var(--app-foreground-muted)]">
-              Dark mode support
+              Gasless minting powered by Paymaster
             </span>
           </li>
           <li className="flex items-start">
@@ -160,19 +160,28 @@ type HomeProps = {
 export function Home({ setActiveTab }: HomeProps) {
   return (
     <div className="space-y-6 animate-fade-in">
-      <Card title="My First Mini App">
+      <Card title="RepuCast - On-Chain Reputation">
         <p className="text-[var(--app-foreground-muted)] mb-4">
-          This is a minimalistic Mini App built with OnchainKit components.
+          Combat bots and Sybil attacks with verifiable reputation scores. Build your on-chain credibility and prove you're human.
         </p>
-        <Button
-          onClick={() => setActiveTab("features")}
-          icon={<Icon name="arrow-right" size="sm" />}
-        >
-          Explore Features
-        </Button>
+        <div className="flex flex-col space-y-3">
+          <Button
+            onClick={() => window.open('/frame', '_blank')}
+            icon={<Icon name="check" size="sm" />}
+          >
+            Check My Reputation
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => setActiveTab("features")}
+            icon={<Icon name="arrow-right" size="sm" />}
+          >
+            Learn More
+          </Button>
+        </div>
       </Card>
 
-      <TodoList />
+      <ReputationInfo />
 
       <TransactionCard />
     </div>
@@ -283,6 +292,48 @@ type Todo = {
   id: number;
   text: string;
   completed: boolean;
+}
+
+function ReputationInfo() {
+  return (
+    <Card title="How It Works">
+      <div className="space-y-4">
+        <div className="flex items-start space-x-3">
+          <div className="bg-[var(--app-accent)] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+            1
+          </div>
+          <div>
+            <p className="font-medium text-[var(--app-foreground)]">Connect & Analyze</p>
+            <p className="text-sm text-[var(--app-foreground-muted)]">
+              We analyze your Farcaster activity and Base transactions
+            </p>
+          </div>
+        </div>
+        <div className="flex items-start space-x-3">
+          <div className="bg-[var(--app-accent)] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+            2
+          </div>
+          <div>
+            <p className="font-medium text-[var(--app-foreground)]">Score Calculation</p>
+            <p className="text-sm text-[var(--app-foreground-muted)]">
+              Generate a reputation score based on authenticity signals
+            </p>
+          </div>
+        </div>
+        <div className="flex items-start space-x-3">
+          <div className="bg-[var(--app-accent)] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+            3
+          </div>
+          <div>
+            <p className="font-medium text-[var(--app-foreground)]">Mint Badge</p>
+            <p className="text-sm text-[var(--app-foreground-muted)]">
+              Qualified users can mint a reputation badge NFT (gasless!)
+            </p>
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
 }
 
 function TodoList() {
